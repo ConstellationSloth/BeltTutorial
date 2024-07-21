@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://ct44m1aobfnpe"]
+
+[ext_resource type="Script" path="res://Conveyors/Components/Detectors/conveyor_detectors.gd" id="1_v2epb"]
+
+[node name="ConveyorDetectors" type="Node2D"]
+script = ExtResource("1_v2epb")

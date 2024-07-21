@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://bu00ntiiddy1k"]
+
+[ext_resource type="Script" path="res://Conveyors/Components/Controller/direction_controller.gd" id="1_wbkor"]
+
+[node name="DirectionController" type="Area2D"]
+collision_layer = 2
+collision_mask = 0
+monitoring = false
+script = ExtResource("1_wbkor")

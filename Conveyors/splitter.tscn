@@ -1,0 +1,37 @@
+[gd_scene load_steps=8 format=3 uid="uid://ca6vcitmain1q"]
+
+[ext_resource type="Script" path="res://Conveyors/splitter.gd" id="1_cyxt7"]
+[ext_resource type="Texture2D" uid="uid://dclvralyryqa4" path="res://Art/splitter_all_sheet.png" id="2_lnhn0"]
+[ext_resource type="PackedScene" uid="uid://bu00ntiiddy1k" path="res://Conveyors/Components/Controller/direction_controller.tscn" id="3_6pgd1"]
+[ext_resource type="PackedScene" uid="uid://des4s18nx8jee" path="res://Conveyors/Components/Inventory/conveyor_inventory.tscn" id="4_bpstk"]
+[ext_resource type="PackedScene" uid="uid://ct44m1aobfnpe" path="res://Conveyors/Components/Detectors/conveyor_detectors.tscn" id="5_ta67d"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eugsw"]
+size = Vector2(16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gnggp"]
+size = Vector2(16, 16)
+
+[node name="Splitter" type="Node2D"]
+script = ExtResource("1_cyxt7")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_lnhn0")
+hframes = 2
+vframes = 2
+
+[node name="DirectionController" parent="." instance=ExtResource("3_6pgd1")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DirectionController"]
+shape = SubResource("RectangleShape2D_eugsw")
+
+[node name="ConveyorInventory" parent="." instance=ExtResource("4_bpstk")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ConveyorInventory"]
+shape = SubResource("RectangleShape2D_gnggp")
+
+[node name="ConveyorDetectors" parent="." instance=ExtResource("5_ta67d")]
+
+[connection signal="directions_changed" from="DirectionController" to="." method="_on_direction_controller_directions_changed"]
+[connection signal="item_held" from="ConveyorInventory" to="." method="_on_conveyor_inventory_item_held"]
+[connection signal="inventory_found" from="ConveyorDetectors" to="." method="_on_conveyor_detectors_inventory_found"]

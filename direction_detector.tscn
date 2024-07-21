@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://da7ievysvw00j"]
+
+[ext_resource type="Script" path="res://DirectionDetector.gd" id="1_7qwys"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mq28j"]
+size = Vector2(16, 16)
+
+[node name="DirectionDetector" type="Area2D"]
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+script = ExtResource("1_7qwys")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_mq28j")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_area_exited"]
