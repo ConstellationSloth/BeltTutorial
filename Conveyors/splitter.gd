@@ -5,8 +5,9 @@ var from_direction: Enums.Direction = Enums.Direction.Right
 @onready var sprite = $Sprite2D
 
 func determine_from_direction():
-	#find the direction not in to_directions
-	pass
+	for direction in Enums.Direction.values():
+		if not to_directions.has(direction):
+			from_direction = direction
 
 func _ready():
 	$DirectionController.set_directions(directions)

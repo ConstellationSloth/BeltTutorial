@@ -2,8 +2,8 @@ extends Node2D
 var to_direction: Enums.Direction = Enums.Direction.Left
 var from_direction: Enums.Direction = Enums.Direction.Right
 @export var directions : Array[Enums.Direction] = []
-@onready var from_controller : FromDirectionController = %FromDirectionController
-@onready var sprite = %Sprite2D
+@onready var from_controller : FromDirectionController = $FromDirectionController
+@onready var sprite = $Sprite2D
 
 func determine_from_direction():
 	from_direction = from_controller.get_from_direction(to_direction)
@@ -14,6 +14,7 @@ func set_direction():
 
 
 func _ready():
+	print(global_position)
 	$DirectionController.set_directions(directions)
 
 func update_to_direction(to_directions: Array[Enums.Direction]):

@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://bhdrn1h4r4q4v"]
-
-[ext_resource type="Script" path="res://ItemHolder.gd" id="1_tc4py"]
-
-[node name="ItemHolder" type="Node2D"]
-script = ExtResource("1_tc4py")

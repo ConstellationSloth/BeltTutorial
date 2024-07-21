@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://8dlloctnnjru"]
 
-[ext_resource type="PackedScene" uid="uid://b5eggbf7o14bu" path="res://conveyor_icon.tscn" id="4_fpfva"]
 [ext_resource type="PackedScene" uid="uid://2sdi7rhr14fh" path="res://Conveyors/generator.tscn" id="5_1a0pq"]
+[ext_resource type="PackedScene" uid="uid://d3r5ri72l82h6" path="res://Conveyors/trash.tscn" id="5_1poeg"]
 [ext_resource type="Script" path="res://Label.gd" id="5_lplos"]
 [ext_resource type="PackedScene" uid="uid://ca6vcitmain1q" path="res://Conveyors/splitter.tscn" id="5_yy37v"]
 [ext_resource type="PackedScene" uid="uid://cfwfejmwtkwmg" path="res://Conveyors/belt.tscn" id="7_mtc1u"]
@@ -10,11 +10,9 @@
 texture_filter = 1
 
 [node name="Camera2D" type="Camera2D" parent="."]
-
-[node name="ConveyorIcon" parent="." instance=ExtResource("4_fpfva")]
+zoom = Vector2(3, 3)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-visible = false
 
 [node name="Label" type="Label" parent="CanvasLayer"]
 anchors_preset = 1
@@ -26,25 +24,33 @@ grow_horizontal = 0
 script = ExtResource("5_lplos")
 
 [node name="Belt" parent="." instance=ExtResource("7_mtc1u")]
-position = Vector2(-192, 32)
+position = Vector2(64, 0)
 
 [node name="Belt2" parent="." instance=ExtResource("7_mtc1u")]
-position = Vector2(-224, 32)
+position = Vector2(32, 0)
 
 [node name="Belt3" parent="." instance=ExtResource("7_mtc1u")]
-position = Vector2(-256, 64)
+position = Vector2(0, 32)
 directions = Array[int]([3])
 
 [node name="Belt5" parent="." instance=ExtResource("7_mtc1u")]
-position = Vector2(-288, 32)
+position = Vector2(-32, 0)
 
 [node name="Belt4" parent="." instance=ExtResource("7_mtc1u")]
-position = Vector2(-256, 0)
+position = Vector2(0, -32)
 directions = Array[int]([1])
 
 [node name="Generator" parent="." instance=ExtResource("5_1a0pq")]
-position = Vector2(-160, 32)
+position = Vector2(96, 0)
 
 [node name="Splitter" parent="." instance=ExtResource("5_yy37v")]
-position = Vector2(-256, 32)
 directions = Array[int]([0, 1, 3])
+
+[node name="Trash" parent="." instance=ExtResource("5_1poeg")]
+position = Vector2(0, 64)
+
+[node name="Trash2" parent="." instance=ExtResource("5_1poeg")]
+position = Vector2(0, -64)
+
+[node name="Trash3" parent="." instance=ExtResource("5_1poeg")]
+position = Vector2(-64, 0)
