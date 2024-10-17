@@ -1,16 +1,17 @@
-[gd_scene load_steps=6 format=3 uid="uid://8dlloctnnjru"]
+[gd_scene load_steps=7 format=3 uid="uid://8dlloctnnjru"]
 
 [ext_resource type="PackedScene" uid="uid://2sdi7rhr14fh" path="res://Conveyors/generator.tscn" id="5_1a0pq"]
 [ext_resource type="PackedScene" uid="uid://d3r5ri72l82h6" path="res://Conveyors/trash.tscn" id="5_1poeg"]
 [ext_resource type="Script" path="res://Label.gd" id="5_lplos"]
 [ext_resource type="PackedScene" uid="uid://ca6vcitmain1q" path="res://Conveyors/splitter.tscn" id="5_yy37v"]
+[ext_resource type="PackedScene" uid="uid://ddh6l04cad4tk" path="res://Building/builder.tscn" id="6_sj645"]
 [ext_resource type="PackedScene" uid="uid://cfwfejmwtkwmg" path="res://Conveyors/belt.tscn" id="7_mtc1u"]
 
 [node name="Main" type="Node2D"]
 texture_filter = 1
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(3, 3)
+zoom = Vector2(2, 2)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -54,3 +55,5 @@ position = Vector2(0, -64)
 
 [node name="Trash3" parent="." instance=ExtResource("5_1poeg")]
 position = Vector2(-64, 0)
+
+[node name="Builder" parent="." instance=ExtResource("6_sj645")]

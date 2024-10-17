@@ -1,0 +1,25 @@
+[gd_scene load_steps=6 format=3 uid="uid://plarxj2333q7"]
+
+[ext_resource type="Script" path="res://Building/buildable_conveyor.gd" id="1_hijxq"]
+[ext_resource type="PackedScene" uid="uid://d0kx7v2wveruk" path="res://Conveyors/Components/Detectors/from_direction_controller.tscn" id="2_6rkwo"]
+[ext_resource type="PackedScene" uid="uid://cltpvpyouk2u0" path="res://Conveyors/Components/Controller/conveyor_sprite_controller.tscn" id="3_fbka4"]
+[ext_resource type="PackedScene" uid="uid://bu00ntiiddy1k" path="res://Conveyors/Components/Controller/direction_controller.tscn" id="4_xiq1p"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b2ega"]
+
+[node name="BuildableConveyor" type="Node2D"]
+script = ExtResource("1_hijxq")
+
+[node name="FromDirectionController" parent="." instance=ExtResource("2_6rkwo")]
+
+[node name="ConveyorSpriteController" parent="." instance=ExtResource("3_fbka4")]
+
+[node name="DirectionController" parent="." instance=ExtResource("4_xiq1p")]
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DirectionController"]
+shape = SubResource("RectangleShape2D_b2ega")
+disabled = true
+
+[connection signal="direction_changed" from="FromDirectionController" to="." method="_on_from_direction_controller_direction_changed"]
+[connection signal="directions_changed" from="DirectionController" to="." method="_on_direction_controller_directions_changed"]

@@ -10,6 +10,7 @@ func determine_from_direction():
 			from_direction = direction
 
 func _ready():
+	BuildingCoordinator.add_building(global_position, self)
 	$DirectionController.set_directions(directions)
 
 func update_to_direction(new_directions: Array[Enums.Direction]):

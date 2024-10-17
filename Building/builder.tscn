@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://ddh6l04cad4tk"]
+
+[ext_resource type="Script" path="res://Building/builder.gd" id="1_i3x72"]
+[ext_resource type="PackedScene" uid="uid://plarxj2333q7" path="res://Building/buildable_conveyor.tscn" id="2_wv4y7"]
+
+[node name="Builder" type="Node2D"]
+script = ExtResource("1_i3x72")
+
+[node name="BuildableConveyor" parent="." instance=ExtResource("2_wv4y7")]

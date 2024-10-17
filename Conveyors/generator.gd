@@ -5,6 +5,7 @@ extends Node2D
 @export var directions : Array[Enums.Direction] = []
 
 func _ready():
+	BuildingCoordinator.add_building(global_position, self)
 	$DirectionController.set_directions(directions)
 	
 

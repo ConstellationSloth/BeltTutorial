@@ -22,10 +22,8 @@ func rotate_left() -> void:
 func rotate_belt(offset: int) -> void:
 	for idx in len(to_directions):
 		var direction: int = to_directions[idx]
-		var index: int = indexes[direction] + offset
+		var index: int = (indexes[direction] + offset) % DIRECTION_COUNT
 		if index < 0:
-			index = index % DIRECTION_COUNT + DIRECTION_COUNT
-		elif index > DIRECTION_COUNT:
-			index = index % DIRECTION_COUNT
+			index = index + DIRECTION_COUNT
 		to_directions[idx] = DIRECTION_ORDER[index]
 	emit_signal("directions_changed", to_directions)
