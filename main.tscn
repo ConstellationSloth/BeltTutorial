@@ -1,5 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://8dlloctnnjru"]
+[gd_scene load_steps=9 format=3 uid="uid://8dlloctnnjru"]
 
+[ext_resource type="Script" path="res://main.gd" id="1_xrd2r"]
+[ext_resource type="Script" path="res://SaveContainer.gd" id="3_fc4kj"]
 [ext_resource type="PackedScene" uid="uid://2sdi7rhr14fh" path="res://Conveyors/generator.tscn" id="5_1a0pq"]
 [ext_resource type="PackedScene" uid="uid://d3r5ri72l82h6" path="res://Conveyors/trash.tscn" id="5_1poeg"]
 [ext_resource type="Script" path="res://Label.gd" id="5_lplos"]
@@ -9,13 +11,13 @@
 
 [node name="Main" type="Node2D"]
 texture_filter = 1
+script = ExtResource("1_xrd2r")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(2, 2)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="Label" type="Label" parent="CanvasLayer"]
+[node name="fpsCount" type="Label" parent="CanvasLayer"]
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
@@ -24,36 +26,61 @@ offset_bottom = 23.0
 grow_horizontal = 0
 script = ExtResource("5_lplos")
 
-[node name="Belt" parent="." instance=ExtResource("7_mtc1u")]
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -56.0
+offset_top = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="Save" type="Button" parent="CanvasLayer/HBoxContainer"]
+layout_mode = 2
+text = "Save"
+
+[node name="Check" type="Button" parent="CanvasLayer/HBoxContainer"]
+layout_mode = 2
+text = "check save"
+
+[node name="SavedNodes" type="Node2D" parent="."]
+script = ExtResource("3_fc4kj")
+
+[node name="Belt" parent="SavedNodes" instance=ExtResource("7_mtc1u")]
 position = Vector2(64, 0)
 
-[node name="Belt2" parent="." instance=ExtResource("7_mtc1u")]
+[node name="Belt2" parent="SavedNodes" instance=ExtResource("7_mtc1u")]
 position = Vector2(32, 0)
 
-[node name="Belt3" parent="." instance=ExtResource("7_mtc1u")]
+[node name="Belt3" parent="SavedNodes" instance=ExtResource("7_mtc1u")]
 position = Vector2(0, 32)
 directions = Array[int]([3])
 
-[node name="Belt5" parent="." instance=ExtResource("7_mtc1u")]
+[node name="Belt5" parent="SavedNodes" instance=ExtResource("7_mtc1u")]
 position = Vector2(-32, 0)
 
-[node name="Belt4" parent="." instance=ExtResource("7_mtc1u")]
+[node name="Belt4" parent="SavedNodes" instance=ExtResource("7_mtc1u")]
 position = Vector2(0, -32)
 directions = Array[int]([1])
 
-[node name="Generator" parent="." instance=ExtResource("5_1a0pq")]
-position = Vector2(96, 0)
-
-[node name="Splitter" parent="." instance=ExtResource("5_yy37v")]
+[node name="Splitter" parent="SavedNodes" instance=ExtResource("5_yy37v")]
 directions = Array[int]([0, 1, 3])
 
-[node name="Trash" parent="." instance=ExtResource("5_1poeg")]
+[node name="Generator" parent="SavedNodes" instance=ExtResource("5_1a0pq")]
+position = Vector2(96, 0)
+
+[node name="Trash" parent="SavedNodes" instance=ExtResource("5_1poeg")]
 position = Vector2(0, 64)
 
-[node name="Trash2" parent="." instance=ExtResource("5_1poeg")]
+[node name="Trash2" parent="SavedNodes" instance=ExtResource("5_1poeg")]
 position = Vector2(0, -64)
 
-[node name="Trash3" parent="." instance=ExtResource("5_1poeg")]
+[node name="Trash3" parent="SavedNodes" instance=ExtResource("5_1poeg")]
 position = Vector2(-64, 0)
 
 [node name="Builder" parent="." instance=ExtResource("6_sj645")]
+
+[connection signal="pressed" from="CanvasLayer/HBoxContainer/Save" to="." method="_on_save_pressed"]
+[connection signal="pressed" from="CanvasLayer/HBoxContainer/Check" to="." method="_on_check_pressed"]

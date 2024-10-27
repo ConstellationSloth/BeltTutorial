@@ -27,6 +27,7 @@ func place(location: Vector2):
 	var directions: Array[Enums.Direction] = [to_direction]
 	belt.directions = directions
 	belt.global_position = location
+	# do something different to control where it gets added
 	get_tree().current_scene.add_child(belt)
 
 func _on_from_direction_controller_direction_changed():

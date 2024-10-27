@@ -4,6 +4,23 @@ var from_direction: Enums.Direction = Enums.Direction.Right
 @export var directions : Array[Enums.Direction] = []
 @onready var sprite = $Sprite2D
 
+func get_save_data():
+	var data = {}
+	data["path"] = "res://Conveyors/splitter.tscn"
+	data["directions"] = directions
+	data["global_position"] = {"x": global_position.x, "y": global_position.y}
+	# get the data for the conveyor inventory
+	return data
+
+func load_from_save_data(save_data):
+	var gp_obj = save_data["global_position"]
+	global_position = Vector2(gp_obj["x"], gp_obj["y"])
+	#do something with conveyor inventory
+	var new_directions: Array[Enums.Direction] = []
+	for direction in save_data["directions"]:
+		new_directions.append(direction as Enums.Direction)
+	update_to_direction(new_directions)
+
 func determine_from_direction():
 	for direction in Enums.Direction.values():
 		if not to_directions.has(direction):

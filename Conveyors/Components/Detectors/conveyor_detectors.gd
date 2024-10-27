@@ -12,7 +12,7 @@ signal inventory_found
 func _ready() -> void:
 	establish_detectors()
 
-func set_directions(new_directions: Array[Enums.Direction]) -> void:
+func set_directions(new_directions) -> void:
 	for child in get_children():
 		child.queue_free()
 	directions = new_directions

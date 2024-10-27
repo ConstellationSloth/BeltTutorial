@@ -5,6 +5,23 @@ var from_direction: Enums.Direction = Enums.Direction.Right
 @onready var from_controller : FromDirectionController = $FromDirectionController
 @onready var sprite = $ConveyorSpriteController
 
+func get_save_data():
+	var data = {}
+	data["path"] = "res://Conveyors/belt.tscn"
+	data["directions"] = directions
+	data["global_position"] = {"x": global_position.x, "y": global_position.y}
+	# get the data for the conveyor inventory
+	return data
+
+func load_from_save_data(save_data):
+	var gp_obj = save_data["global_position"]
+	global_position = Vector2(gp_obj["x"], gp_obj["y"])
+	#do something with conveyor inventory
+	var new_directions: Array[Enums.Direction] = []
+	for direction in save_data["directions"]:
+		new_directions.append(direction as Enums.Direction)
+	update_to_direction(new_directions)
+
 func determine_from_direction():
 	from_direction = from_controller.get_from_direction(to_direction)
 
@@ -15,7 +32,7 @@ func _ready():
 	BuildingCoordinator.add_building(global_position, self)
 	$DirectionController.set_directions(directions)
 
-func update_to_direction(to_directions: Array[Enums.Direction]):
+func update_to_direction(to_directions):
 	to_direction = to_directions[0]
 	determine_from_direction()
 	set_direction()
